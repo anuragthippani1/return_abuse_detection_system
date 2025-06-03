@@ -1,0 +1,101 @@
+customer_id,return_reason,risk_score,suspicion_score,product_category,action,date,image_url
+dca8c9e8-ce08-4d7c-ab58-52026a89b097,Defective,0.03,0.28,Clothing,Blocked,2024-07-03,https://placekitten.com/922/846
+f91068b8-2351-4f83-b084-aaa0c76245c8,Defective,0.68,0.89,Electronics,Under Review,2024-09-02,https://dummyimage.com/466x741
+86c14812-c6ec-4f17-b4a8-ef84608eafa4,Defective,0.03,0.22,Toys,Refunded,2024-10-18,https://placekitten.com/230/287
+7d0dcd7f-4c5f-4580-8b35-f2df845b0de6,Changed Mind,0.2,0.65,Toys,Under Review,2024-08-24,https://www.lorempixel.com/688/706
+aba1e3ef-eb9b-4f41-98c7-32bccd3716ef,Wrong Item,0.45,0.28,Electronics,Blocked,2025-03-20,https://placekitten.com/464/792
+8e589c17-5c99-49d4-85f6-b6b5d1bbf9b1,Item Not as Described,0.34,0.16,Home,Refunded,2024-07-14,https://dummyimage.com/917x659
+876f1ece-0c20-4a5c-b8d0-21825f04cbbc,Defective,0.38,0.36,Home,Warning Issued,2025-01-08,https://www.lorempixel.com/723/619
+373a48d0-397f-4653-b564-c5432d53ef9a,Defective,0.73,0.54,Books,Refunded,2024-11-28,https://dummyimage.com/395x78
+b7c12568-64f6-445d-bccd-e1986c0e9a0a,Changed Mind,0.29,0.63,Home,Blocked,2025-05-14,https://placeimg.com/824/732/any
+3430fdd4-825c-4224-905d-35a0f6bd439b,Defective,0.05,0.23,Home,Refunded,2024-07-21,https://www.lorempixel.com/733/405
+f8da8295-43ac-4b7f-8c22-b7fb5ebfe2ef,Wrong Item,0.87,0.38,Books,Warning Issued,2024-09-26,https://placekitten.com/875/756
+79bd7b5d-3c94-4962-b500-971f78f36953,Wrong Item,0.37,0.21,Home,Refunded,2024-08-12,https://placekitten.com/531/359
+e84bd2d1-4dff-4b8c-95ce-74557fcab39b,Changed Mind,0.63,0.53,Clothing,Blocked,2024-10-19,https://www.lorempixel.com/421/254
+b87bf553-8d3e-46b3-8178-095b4eb06b12,Item Not as Described,0.38,0.99,Toys,Blocked,2025-04-13,https://dummyimage.com/601x986
+b7f76db8-41ac-4dd7-ad45-42fb7092e966,No Longer Needed,0.84,0.78,Clothing,Refunded,2024-09-23,https://dummyimage.com/618x413
+63b3e4bc-fbbc-4753-bfb0-1ec7c536cbd6,No Longer Needed,0.4,0.07,Toys,Warning Issued,2024-11-01,https://placeimg.com/568/440/any
+c8a677f2-b4d1-4f43-9e7e-0ea4261b6f80,Wrong Item,0.66,0.4,Books,Blocked,2024-09-23,https://www.lorempixel.com/322/353
+73742937-cedd-4ab3-ad5f-937a18088497,No Longer Needed,0.14,0.74,Toys,Warning Issued,2025-02-12,https://dummyimage.com/469x371
+ee614bc4-746c-4d54-ac77-2baa1b96f243,Changed Mind,0.43,0.58,Home,Blocked,2024-11-30,https://placekitten.com/337/328
+d9dd5fe8-b815-4ac6-94f5-ca60fb7da27a,Wrong Item,0.51,0.09,Electronics,Refunded,2024-06-18,https://placekitten.com/767/16
+8547179b-48e7-4e56-9cbd-18fbf0838e91,Wrong Item,0.63,0.79,Books,Refunded,2024-08-12,https://dummyimage.com/363x608
+3faab976-13f4-442f-aa58-a6636b7aa3d2,Item Not as Described,0.38,1.0,Toys,Warning Issued,2024-12-18,https://placeimg.com/422/179/any
+a3273998-c276-42ec-af56-719b1ed690e8,Changed Mind,0.86,0.01,Electronics,Warning Issued,2024-11-24,https://www.lorempixel.com/946/211
+04d28675-3526-41c6-a17b-195c53f3ef4d,No Longer Needed,0.11,0.43,Books,Refunded,2025-02-11,https://placeimg.com/418/526/any
+941fbd8d-547f-45ed-90f4-586556b01fe9,No Longer Needed,0.97,0.76,Toys,Refunded,2025-04-15,https://dummyimage.com/134x898
+6c0d1524-0168-45cb-97ef-726286f54641,No Longer Needed,0.84,0.51,Clothing,Blocked,2024-06-02,https://dummyimage.com/966x411
+737b7558-b1b5-4a41-b7d7-1b40254c1c8e,No Longer Needed,0.76,0.54,Toys,Refunded,2025-05-11,https://www.lorempixel.com/308/456
+a901ae45-51c9-4a20-99fc-a8f83c8ac978,Changed Mind,0.32,0.02,Home,Warning Issued,2025-05-28,https://placekitten.com/714/790
+0851ee9c-c055-4b9c-81cf-8e2419b4cb05,Wrong Item,0.06,0.88,Electronics,Refunded,2025-05-16,https://www.lorempixel.com/142/1007
+675452e7-5c4b-45c7-b3e2-4befc4126340,Item Not as Described,0.82,0.98,Toys,Blocked,2024-08-23,https://www.lorempixel.com/324/849
+a6a4eb33-652f-4615-b6b2-7e69ac2b9973,Wrong Item,0.66,0.95,Clothing,Warning Issued,2024-10-10,https://www.lorempixel.com/877/118
+7f5f1787-6cca-4afa-8ada-cadb0b6bf203,Changed Mind,0.87,0.42,Clothing,Blocked,2024-08-07,https://dummyimage.com/843x113
+4f136b9f-199f-4318-b134-dcd445c4091b,No Longer Needed,0.4,0.67,Home,Under Review,2024-10-07,https://placekitten.com/485/528
+9c96b758-5ccf-4cc4-a6f1-f844a79bfc84,Changed Mind,0.45,0.25,Electronics,Warning Issued,2024-06-21,https://dummyimage.com/165x788
+c901d5de-e216-4410-8977-15f817b4b5fc,Defective,0.59,0.23,Clothing,Refunded,2024-06-30,https://placekitten.com/68/64
+73fb4490-6749-4e2e-bb8c-912c7483806d,Defective,0.71,0.06,Electronics,Refunded,2025-04-07,https://placeimg.com/911/545/any
+f0374af1-09b8-4e2b-a78c-caf726b1f509,No Longer Needed,0.07,0.24,Books,Blocked,2024-09-17,https://dummyimage.com/778x520
+936f14dc-edef-4461-9912-5d49d2aaf57d,Changed Mind,0.13,0.94,Toys,Under Review,2024-07-07,https://placeimg.com/382/851/any
+f9758c6a-17e9-4c9e-9205-9e4f524703e4,Wrong Item,0.78,0.81,Clothing,Refunded,2025-01-12,https://dummyimage.com/539x476
+ed90a16b-b6a9-4522-bec7-64b8e092d376,Defective,0.66,0.35,Books,Under Review,2024-09-13,https://www.lorempixel.com/45/554
+13323c8e-3441-42e2-8475-24c5585e367f,Defective,0.67,0.98,Electronics,Refunded,2025-03-26,https://www.lorempixel.com/708/1009
+7e031d60-e00b-4716-90da-53bf805a7e7f,Item Not as Described,0.73,0.8,Electronics,Blocked,2024-11-02,https://dummyimage.com/244x649
+8ad674fe-998e-4db6-bb74-afc14516d0d3,Wrong Item,0.19,0.45,Books,Blocked,2024-12-30,https://www.lorempixel.com/932/878
+73a3a04f-a163-424b-8dab-3765e64d82e7,No Longer Needed,0.46,0.87,Electronics,Under Review,2024-07-24,https://placekitten.com/576/792
+dbc5addc-2023-4cf7-931d-368097f93683,Changed Mind,0.1,0.65,Toys,Refunded,2024-10-09,https://www.lorempixel.com/927/950
+8a2d2dec-e196-4ba4-b0a8-4d9991764c5f,Defective,0.93,0.85,Clothing,Under Review,2024-07-15,https://dummyimage.com/827x966
+f64ade12-0153-440d-9fb0-2b3a6c40088a,Item Not as Described,0.48,0.86,Electronics,Blocked,2024-07-07,https://placekitten.com/683/86
+e755d2ad-8a6d-48b0-aa94-2048064d31fe,Item Not as Described,0.0,0.39,Books,Warning Issued,2025-04-20,https://placekitten.com/396/211
+eea19589-4180-45c1-9b6e-dec2b0b456cb,Item Not as Described,0.7,0.73,Toys,Under Review,2024-09-12,https://placeimg.com/350/33/any
+8e22f9f3-d290-44ee-844e-1ea85fe8fcc9,Wrong Item,0.19,0.22,Electronics,Refunded,2024-06-17,https://dummyimage.com/596x738
+7449405e-4462-4e76-98fd-986cead08c60,No Longer Needed,0.06,0.58,Toys,Blocked,2024-10-18,https://placekitten.com/129/1012
+81b81c81-3fca-40e9-84aa-0588a2697659,Defective,0.96,0.08,Clothing,Refunded,2024-08-21,https://placeimg.com/610/735/any
+25a776d9-59a8-4951-ae72-c4d97eb2c1b1,Changed Mind,0.07,0.86,Books,Refunded,2024-11-04,https://placeimg.com/632/983/any
+418fc354-ccca-42a5-a890-c466739475f0,Changed Mind,0.25,0.59,Toys,Refunded,2024-12-27,https://dummyimage.com/393x468
+46deacb3-4777-4e2d-bf81-5ae6e9166b47,Item Not as Described,0.66,0.57,Home,Warning Issued,2025-04-19,https://placekitten.com/794/186
+414b09c2-da41-41fa-87e3-bb84447f5350,Wrong Item,0.67,0.31,Home,Under Review,2025-04-12,https://placekitten.com/249/312
+8c2dd7aa-ad93-4cb6-bed3-9c66f96bbb67,Wrong Item,0.67,0.3,Home,Refunded,2025-01-12,https://placeimg.com/772/142/any
+10c215d4-6770-4495-a8fd-000ce4a71cef,Defective,0.46,1.0,Electronics,Refunded,2024-06-11,https://placeimg.com/552/76/any
+69543795-c1de-411e-bae6-30961ee92dbe,Changed Mind,0.21,0.27,Home,Refunded,2024-09-16,https://placekitten.com/599/986
+2c1d40c4-a198-4c8d-8a0c-2b77b72ebceb,Wrong Item,0.37,0.16,Toys,Warning Issued,2024-08-05,https://placekitten.com/351/809
+46c96363-aebe-4331-883b-86caf6f93c60,Changed Mind,0.98,0.81,Toys,Refunded,2025-01-13,https://placekitten.com/371/170
+00fd5bf4-3574-41c1-b3a4-d3a5378e83d2,Changed Mind,0.3,0.66,Clothing,Warning Issued,2025-03-21,https://placeimg.com/930/5/any
+089b1a71-7ca0-42ef-befc-47b67340b140,Defective,0.89,0.74,Clothing,Warning Issued,2024-06-05,https://placekitten.com/435/727
+ea4f0c87-3005-4dfe-a177-cfd1fa978245,No Longer Needed,0.6,0.72,Clothing,Warning Issued,2024-07-09,https://www.lorempixel.com/8/809
+c1899c17-247e-42cb-9de3-ccd0ba67318c,Changed Mind,0.49,0.91,Electronics,Refunded,2025-03-09,https://dummyimage.com/819x821
+0d0ab7b8-2af1-4a9e-8ae9-3eb678da09bf,Item Not as Described,0.83,0.04,Home,Blocked,2024-10-15,https://www.lorempixel.com/283/322
+91f92b4b-f840-4a82-8155-0f01653759c5,No Longer Needed,0.16,0.44,Books,Refunded,2024-12-10,https://www.lorempixel.com/464/692
+609c193c-289f-44ed-a5f0-0f206c33bba0,Defective,0.08,0.88,Clothing,Refunded,2024-09-09,https://placeimg.com/204/774/any
+c3a8baf2-6876-4272-bd72-5eca624643f5,No Longer Needed,0.58,0.15,Clothing,Refunded,2025-02-18,https://www.lorempixel.com/609/890
+8c497c7b-2d24-4e5f-860d-b70b8f60678f,No Longer Needed,0.36,0.93,Electronics,Warning Issued,2024-07-24,https://placeimg.com/939/3/any
+cf64ed67-a48e-4b2b-80ca-affdedc49c81,Wrong Item,0.68,0.67,Home,Under Review,2024-09-15,https://www.lorempixel.com/317/829
+877124ed-51dd-4670-9570-ad3a14ee2d2a,Changed Mind,0.75,0.93,Clothing,Blocked,2024-11-10,https://placekitten.com/347/964
+41a410d6-6926-4998-860d-9fcb6c73d62f,Wrong Item,0.88,0.02,Home,Under Review,2024-08-06,https://dummyimage.com/938x255
+53a708d0-5138-4ee2-a5d9-776248e8318a,Wrong Item,0.27,0.79,Electronics,Under Review,2024-11-07,https://placekitten.com/826/580
+19cec3bb-92c9-4e71-973a-517c56351175,Defective,0.86,0.22,Books,Warning Issued,2025-05-04,https://placekitten.com/355/830
+b17bdcda-a809-47fd-9855-ccf60fd9a258,No Longer Needed,0.82,0.87,Clothing,Refunded,2025-03-23,https://www.lorempixel.com/729/31
+a6df058f-ddbd-4a14-b28a-1d826ade78ee,Wrong Item,0.4,0.28,Electronics,Warning Issued,2025-05-31,https://dummyimage.com/340x251
+f70f1766-ebf2-468d-bf5b-1490ff7d9083,No Longer Needed,0.64,0.4,Toys,Warning Issued,2024-07-21,https://dummyimage.com/325x202
+0795b6cf-62ef-4d0b-a1b4-b8036e80e834,Defective,0.12,0.97,Clothing,Warning Issued,2025-03-20,https://www.lorempixel.com/793/381
+c8943270-d399-48be-ac0f-e518a53cd84d,Defective,0.11,0.43,Home,Under Review,2024-10-22,https://www.lorempixel.com/388/954
+2c91f0c4-a69f-4717-8a05-b0c3ebb785e5,Changed Mind,0.98,0.12,Toys,Blocked,2024-12-19,https://placekitten.com/37/984
+8b9e195e-992b-42dd-b1bc-043245348585,No Longer Needed,0.04,0.44,Toys,Blocked,2024-09-18,https://placeimg.com/450/66/any
+00122b36-d7e0-4bb6-9e44-6fda589f7280,No Longer Needed,0.43,0.95,Home,Warning Issued,2024-07-20,https://placekitten.com/254/920
+f0c7ab0d-1037-4815-9f62-c663f0677181,Defective,0.72,0.3,Home,Under Review,2025-01-20,https://placekitten.com/248/591
+1ad7437e-8b0b-4c5a-b512-e4a32daecfc3,No Longer Needed,0.4,0.3,Clothing,Blocked,2024-09-19,https://placeimg.com/575/970/any
+d2acf94b-238a-4217-a6d8-e84f9d79abc5,Item Not as Described,0.66,0.38,Clothing,Warning Issued,2025-04-26,https://placeimg.com/190/626/any
+989062a0-b2fc-4462-bd0d-f6780eee7ed4,Item Not as Described,0.55,0.0,Home,Blocked,2025-05-21,https://dummyimage.com/425x410
+c021d7a7-6d27-4a31-99dc-184b747b6324,Item Not as Described,0.79,0.61,Home,Under Review,2024-12-09,https://placekitten.com/501/574
+4c4ba50a-58e0-47f8-a81f-b6acc433199b,Item Not as Described,0.44,0.21,Books,Blocked,2024-07-17,https://dummyimage.com/262x480
+30c093d4-c67f-4606-a9c5-c23529ca888a,Defective,0.28,0.66,Toys,Warning Issued,2025-03-25,https://www.lorempixel.com/132/146
+e27c7237-7dda-47af-b430-cb6426c62e1e,Defective,0.82,0.75,Home,Blocked,2025-06-02,https://www.lorempixel.com/735/137
+d0fe997f-3439-434c-9532-6903771a1e8d,Wrong Item,0.15,0.05,Books,Refunded,2024-06-10,https://placeimg.com/220/1006/any
+a50eaa42-3516-4eba-9ed4-6d07616a399f,Item Not as Described,0.41,0.63,Clothing,Under Review,2024-07-23,https://dummyimage.com/173x429
+5926a8c4-f1ac-4656-a33d-ac65ee2af53b,Item Not as Described,0.4,0.15,Electronics,Refunded,2025-01-22,https://www.lorempixel.com/880/236
+a9d8f1bf-c17d-433e-9339-043987b05794,Item Not as Described,0.22,0.8,Toys,Under Review,2025-03-17,https://www.lorempixel.com/921/435
+38a0e554-1c34-42d1-8f26-2ea301dcd6d0,Defective,0.56,0.92,Electronics,Under Review,2024-07-04,https://dummyimage.com/702x982
+233b43bd-94b9-4411-ab40-7812e65a0a03,Wrong Item,0.8,0.67,Toys,Warning Issued,2024-12-11,https://placekitten.com/972/682
+d25258e1-4ae8-4c62-91a9-6cec28677c1b,Item Not as Described,0.61,0.72,Toys,Under Review,2025-03-23,https://www.lorempixel.com/882/8
+f4bac173-bbd8-436e-afa8-038fde6b10d1,Changed Mind,0.45,0.16,Books,Under Review,2024-11-21,https://placeimg.com/219/48/any
+033fe857-0b7c-4510-8ae0-6037ab6017cd,No Longer Needed,0.75,0.84,Home,Under Review,2025-02-23,https://placeimg.com/631/117/any
