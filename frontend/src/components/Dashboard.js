@@ -46,6 +46,34 @@ const Dashboard = () => {
     fetchStats();
   }, []);
 
+  React.useEffect(() => {
+    if (!document.getElementById("anurag-watermark")) {
+      const div = document.createElement("div");
+      div.id = "anurag-watermark";
+      div.innerText = "anurag";
+      Object.assign(div.style, {
+        position: "fixed",
+        bottom: "18px",
+        right: "30px",
+        opacity: "0.18",
+        fontSize: "2.2rem",
+        zIndex: 9999,
+        pointerEvents: "none",
+        color: "transparent",
+        fontWeight: 900,
+        letterSpacing: "4px",
+        userSelect: "none",
+        fontFamily: "monospace, sans-serif",
+        background: "linear-gradient(90deg, #7b2ff2 0%, #f357a8 100%)",
+        WebkitBackgroundClip: "text",
+        backgroundClip: "text",
+        transform: "rotate(-18deg)",
+        textShadow: "0 2px 8px #fff, 0 1px 1px #7b2ff2",
+      });
+      document.body.appendChild(div);
+    }
+  }, []);
+
   const fetchCases = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/get-return-cases`);
