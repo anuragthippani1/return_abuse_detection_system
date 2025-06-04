@@ -6,36 +6,51 @@ from bson.objectid import ObjectId
 class ReturnCase:
     def __init__(
         self,
+        case_id: str,
+        user_id: str,
         customer_id: str,
+        abuse_type: str,
+        description: str,
+        status: str,
+        reported_at: datetime,
+        refund_method_type: str,
+        action_taken: str,
         return_reason: str,
         risk_score: float,
         suspicion_score: float,
-        refund_method_type: str,
-        action_taken: str,
-        product_category: Optional[str] = None,
-        additional_data: Optional[Dict[str, Any]] = None
+        product_category: str
     ):
+        self.case_id = case_id
+        self.user_id = user_id
         self.customer_id = customer_id
+        self.abuse_type = abuse_type
+        self.description = description
+        self.status = status
+        self.reported_at = reported_at
+        self.refund_method_type = refund_method_type
+        self.action_taken = action_taken
         self.return_reason = return_reason
         self.risk_score = risk_score
         self.suspicion_score = suspicion_score
-        self.refund_method_type = refund_method_type
-        self.action_taken = action_taken
         self.product_category = product_category
-        self.additional_data = additional_data or {}
         self.timestamp = datetime.utcnow()
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert the return case to a dictionary for MongoDB storage."""
         return {
+            'case_id': self.case_id,
+            'user_id': self.user_id,
             'customer_id': self.customer_id,
+            'abuse_type': self.abuse_type,
+            'description': self.description,
+            'status': self.status,
+            'reported_at': self.reported_at,
+            'refund_method_type': self.refund_method_type,
+            'action_taken': self.action_taken,
             'return_reason': self.return_reason,
             'risk_score': self.risk_score,
             'suspicion_score': self.suspicion_score,
-            'refund_method_type': self.refund_method_type,
-            'action_taken': self.action_taken,
             'product_category': self.product_category,
-            'additional_data': self.additional_data,
             'timestamp': self.timestamp
         }
 
@@ -43,14 +58,19 @@ class ReturnCase:
     def from_dict(cls, data: Dict[str, Any]) -> 'ReturnCase':
         """Create a ReturnCase instance from a dictionary."""
         return cls(
+            case_id=data['case_id'],
+            user_id=data['user_id'],
             customer_id=data['customer_id'],
+            abuse_type=data['abuse_type'],
+            description=data['description'],
+            status=data['status'],
+            reported_at=data['reported_at'],
+            refund_method_type=data['refund_method_type'],
+            action_taken=data['action_taken'],
             return_reason=data['return_reason'],
             risk_score=data['risk_score'],
             suspicion_score=data['suspicion_score'],
-            refund_method_type=data['refund_method_type'],
-            action_taken=data['action_taken'],
-            product_category=data.get('product_category'),
-            additional_data=data.get('additional_data')
+            product_category=data['product_category']
         )
 
 class ReturnCaseModel:
@@ -66,7 +86,7 @@ class ReturnCaseModel:
         return cases
 
     def get_by_id(self, case_id):
-        case = self.collection.find_one({"_id": ObjectId(case_id)})
+        case = self.collection.find_one({"case_id": case_id})
         return self._serialize(case) if case else None
 
     def create(self, case_data):
@@ -75,35 +95,57 @@ class ReturnCaseModel:
 
     def update(self, case_id, case_data):
         result = self.collection.update_one(
-            {"_id": ObjectId(case_id)},
+            {"case_id": case_id},
             {"$set": case_data}
         )
         return result.modified_count > 0
 
     def delete(self, case_id):
-        result = self.collection.delete_one({"_id": ObjectId(case_id)})
+        result = self.collection.delete_one({"case_id": case_id})
         return result.deleted_count > 0
 
     def get_statistics(self):
         pipeline = [
             {
                 "$group": {
-                    "_id": "$return_reason",
-                    "count": {"$sum": 1},
-                    "avg_risk_score": {"$avg": "$risk_score"}
+                    "_id": None,
+                    "total_cases": {"$sum": 1},
+                    "avg_risk_score": {"$avg": "$risk_score"},
+                    "avg_suspicion_score": {"$avg": "$suspicion_score"},
+                    "high_risk_cases": {
+                        "$sum": {
+                            "$cond": [{"$gte": ["$risk_score", 0.7]}, 1, 0]
+                        }
+                    },
+                    "medium_risk_cases": {
+                        "$sum": {
+                            "$cond": [
+                                {"$and": [
+                                    {"$gte": ["$risk_score", 0.3]},
+                                    {"$lt": ["$risk_score", 0.7]}
+                                ]},
+                                1,
+                                0
+                            ]
+                        }
+                    },
+                    "low_risk_cases": {
+                        "$sum": {
+                            "$cond": [{"$lt": ["$risk_score", 0.3]}, 1, 0]
+                        }
+                    }
                 }
             }
         ]
         stats = list(self.collection.aggregate(pipeline))
-        # Format output
-        return [
-            {
-                "return_reason": stat["_id"],
-                "count": stat["count"],
-                "avg_risk_score": stat["avg_risk_score"]
-            }
-            for stat in stats
-        ]
+        return stats[0] if stats else {
+            "total_cases": 0,
+            "avg_risk_score": 0,
+            "avg_suspicion_score": 0,
+            "high_risk_cases": 0,
+            "medium_risk_cases": 0,
+            "low_risk_cases": 0
+        }
 
     def _serialize(self, doc):
         if not doc:

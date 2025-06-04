@@ -4,14 +4,19 @@ import { RiskScoreResponse, TextAnalysisResponse, VisualAnalysisResponse } from 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 export interface ReturnCase {
-  _id: string;
+  case_id: string;
+  user_id: string;
   customer_id: string;
+  abuse_type: string;
+  description: string;
+  status: string;
+  reported_at: string;
+  refund_method_type: string;
+  action_taken: string;
   return_reason: string;
   risk_score: number;
   suspicion_score: number;
-  refund_method_type: string;
-  action_taken: string;
-  product_category?: string;
+  product_category: string;
   timestamp: string;
 }
 
@@ -56,7 +61,7 @@ export const returnCaseApi = {
   },
 
   // Save a new return case
-  saveReturnCase: async (data: Omit<ReturnCase, '_id' | 'timestamp'>) => {
+  saveReturnCase: async (data: Omit<ReturnCase, 'timestamp'>) => {
     const response = await api.post('/save-return-case', data);
     return response.data;
   },

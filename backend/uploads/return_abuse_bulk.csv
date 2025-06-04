@@ -1,26 +1,11 @@
 case_id,user_id,customer_id,abuse_type,description,status,reported_at,refund_method_type,action_taken,return_reason,risk_score,suspicion_score,product_category,timestamp
-1001,501,9001,spam,User sent unsolicited promotional messages,open,2025-05-30T10:15:00Z,credit_card,refund_issued,damaged_item,0.75,0.85,electronics,2025-06-03T14:48:46.491643
-1002,502,9002,harassment,User threatened other users in chat,closed,2025-05-29T16:40:00Z,paypal,account_suspended,wrong_item,0.2,0.3,apparel,2025-06-03T14:48:46.491643
-1003,503,9003,fraud,User attempted fraudulent transactions,investigating,2025-05-28T14:20:00Z,bank_transfer,under_review,not_as_described,0.95,0.9,beauty,2025-06-03T14:48:46.491643
-1004,504,9004,spam,Repeated spam messages in forums,open,2025-05-27T09:55:00Z,credit_card,warning_sent,damaged_item,0.4,0.5,home_goods,2025-06-03T14:48:46.491643
-1005,505,9005,abuse,Use of offensive language in comments,closed,2025-05-26T11:30:00Z,paypal,no_action,faulty_product,0.1,0.05,books,2025-06-03T14:48:46.491643
-1006,506,9006,damage,Item broken during delivery,open,2025-05-25T08:15:00Z,credit_card,refund_issued,broken_screen,0.7,0.9,electronics,2025-06-03T14:48:46.491643
-1007,507,9007,wrong_item,Received wrong product,closed,2025-05-24T10:45:00Z,paypal,replacement_sent,wrong_color,0.3,0.2,apparel,2025-06-03T14:48:46.491643
-1008,508,9008,fraud,Multiple accounts used,suspended,2025-05-23T12:30:00Z,bank_transfer,account_flagged,suspicious_activity,0.95,0.97,home_goods,2025-06-03T14:48:46.491643
-1009,509,9009,late_delivery,Delivery was delayed,open,2025-05-22T15:00:00Z,credit_card,no_action,logistics_delay,0.2,0.3,books,2025-06-03T14:48:46.491643
-1010,510,9010,missing_item,One item missing from order,open,2025-05-21T14:00:00Z,paypal,partial_refund,missing_part,0.5,0.45,electronics,2025-06-03T14:48:46.491643
-1011,511,9011,unauthorized,Unauthorized transaction,investigating,2025-05-20T13:00:00Z,bank_transfer,investigation_started,unauthorized_charge,0.85,0.9,finance,2025-06-03T14:48:46.491643
-1012,512,9012,not_working,Product not turning on,closed,2025-05-19T10:00:00Z,credit_card,replacement_sent,hardware_issue,0.4,0.35,electronics,2025-06-03T14:48:46.491643
-1013,513,9013,used_item,Received used item,open,2025-05-18T09:00:00Z,paypal,refund_issued,packaging_issue,0.6,0.65,home_goods,2025-06-03T14:48:46.491643
-1014,514,9014,incomplete_order,Only part of order delivered,closed,2025-05-17T08:00:00Z,credit_card,partial_refund,incomplete_delivery,0.55,0.5,books,2025-06-03T14:48:46.491643
-1015,515,9015,spam,Repeated messages,open,2025-05-16T11:00:00Z,bank_transfer,warning_sent,spam_behavior,0.35,0.4,services,2025-06-03T14:48:46.491643
-1016,516,9016,fraud,Impersonation detected,suspended,2025-05-15T10:00:00Z,credit_card,account_flagged,fake_identity,0.99,0.98,finance,2025-06-03T14:48:46.491643
-1017,517,9017,scam,Scam claim on refund,investigating,2025-05-14T09:00:00Z,paypal,investigation_started,false_claim,0.8,0.85,electronics,2025-06-03T14:48:46.491643
-1018,518,9018,late_delivery,Delayed due to courier,closed,2025-05-13T08:00:00Z,bank_transfer,no_action,external_delay,0.1,0.2,books,2025-06-03T14:48:46.491643
-1019,519,9019,damaged_item,Packaging severely damaged,open,2025-05-12T14:00:00Z,credit_card,replacement_sent,package_damage,0.65,0.7,home_goods,2025-06-03T14:48:46.491643
-1020,520,9020,faulty_product,Malfunction on arrival,closed,2025-05-11T12:00:00Z,paypal,refund_issued,circuit_failure,0.75,0.8,electronics,2025-06-03T14:48:46.491643
-1021,521,9021,wrong_item,Wrong size received,open,2025-05-10T10:00:00Z,credit_card,replacement_sent,size_mismatch,0.3,0.25,apparel,2025-06-03T14:48:46.491643
-1022,522,9022,fraud,Multiple orders flagged,suspended,2025-05-09T09:00:00Z,bank_transfer,account_flagged,bulk_fraud,0.92,0.96,services,2025-06-03T14:48:46.491643
-1023,523,9023,abuse,Offensive content in review,closed,2025-05-08T08:00:00Z,paypal,no_action,policy_violation,0.2,0.15,books,2025-06-03T14:48:46.491643
-1024,524,9024,spam,Fake reviews submitted,investigating,2025-05-07T07:00:00Z,credit_card,warning_sent,review_spam,0.6,0.55,home_goods,2025-06-03T14:48:46.491643
-1025,525,9025,used_item,Signs of prior use,closed,2025-05-06T06:00:00Z,paypal,refund_issued,used_merchandise,0.5,0.45,apparel,2025-06-03T14:48:46.491643
+1001,501,9001,spam,User sent unsolicited promotional messages,open,2025-05-30T10:15:00Z,credit_card,refund_issued,damaged_item,0.75,0.85,electronics,2025-06-03T19:45:57.066824
+1002,502,9002,harassment,User threatened other users in chat,closed,2025-05-29T16:40:00Z,paypal,account_suspended,wrong_item,0.2,0.3,apparel,2025-06-03T19:45:57.066824
+1003,503,9003,fraud,User attempted fraudulent transactions,investigating,2025-05-28T14:20:00Z,bank_transfer,under_review,not_as_described,0.95,0.9,beauty,2025-06-03T19:45:57.066824
+1004,504,9004,spam,Repeated spam messages in forums,open,2025-05-27T09:55:00Z,credit_card,warning_sent,damaged_item,0.4,0.5,home_goods,2025-06-03T19:45:57.066824
+1005,505,9005,abuse,Use of offensive language in comments,closed,2025-05-26T11:30:00Z,paypal,no_action,faulty_product,0.1,0.05,books,2025-06-03T19:45:57.066824
+1006,506,9006,damage,Item broken during delivery,open,2025-05-25T08:15:00Z,credit_card,refund_issued,broken_screen,0.7,0.9,electronics,2025-06-03T19:45:57.066824
+1007,507,9007,wrong_item,Received wrong product,closed,2025-05-24T10:45:00Z,paypal,replacement_sent,wrong_color,0.3,0.2,apparel,2025-06-03T19:45:57.066824
+1008,508,9008,fraud,Multiple accounts used,suspended,2025-05-23T12:30:00Z,bank_transfer,account_flagged,suspicious_activity,0.95,0.97,home_goods,2025-06-03T19:45:57.066824
+1009,509,9009,late_delivery,Delivery was delayed,open,2025-05-22T15:00:00Z,credit_card,no_action,logistics_delay,0.2,0.3,books,2025-06-03T19:45:57.066824
+1010,510,9010,missing_item,One item missing from order,open,2025-05-21T14:00:00Z,paypal,partial_refund,missing_part,0.5,0.45,electronics ,2025-06-03T19:45:57.066824

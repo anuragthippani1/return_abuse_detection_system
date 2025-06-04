@@ -1,0 +1,11 @@
+case_id,user_id,customer_id,abuse_type,description,status,reported_at,refund_method_type,action_taken,return_reason,risk_score,suspicion_score,product_category
+1001,501,9001,spam,"User sent unsolicited promotional messages","open",2025-05-30T10:15:00Z,credit_card,refund_issued,damaged_item,0.75,0.85,electronics
+1002,502,9002,harassment,"User threatened other users in chat","closed",2025-05-29T16:40:00Z,paypal,account_suspended,wrong_item,0.20,0.30,apparel
+1003,503,9003,fraud,"User attempted fraudulent transactions","investigating",2025-05-28T14:20:00Z,bank_transfer,under_review,not_as_described,0.95,0.90,beauty
+1004,504,9004,spam,"Repeated spam messages in forums","open",2025-05-27T09:55:00Z,credit_card,warning_sent,damaged_item,0.40,0.50,home_goods
+1005,505,9005,abuse,"Use of offensive language in comments","closed",2025-05-26T11:30:00Z,paypal,no_action,faulty_product,0.10,0.05,books
+1006,506,9006,damage,"Item broken during delivery","open",2025-05-25T08:15:00Z,credit_card,refund_issued,broken_screen,0.70,0.90,electronics
+1007,507,9007,wrong_item,"Received wrong product","closed",2025-05-24T10:45:00Z,paypal,replacement_sent,wrong_color,0.30,0.20,apparel
+1008,508,9008,fraud,"Multiple accounts used","suspended",2025-05-23T12:30:00Z,bank_transfer,account_flagged,suspicious_activity,0.95,0.97,home_goods
+1009,509,9009,late_delivery,"Delivery was delayed","open",2025-05-22T15:00:00Z,credit_card,no_action,logistics_delay,0.20,0.30,books
+1010,510,9010,missing_item,"One item missing from order","open",2025-05-21T14:00:00Z,paypal,partial_refund,missing_part,0.50,0.45,electronics 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
     Box,
     Container,
@@ -8,48 +8,36 @@ import {
     Card,
     CardContent,
     Slider,
+    MenuItem,
+    Select,
     FormControl,
     InputLabel,
-    Select,
-    MenuItem,
 } from '@mui/material';
-import { DataGrid, GridColDef, GridPaginationModel } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useQuery } from 'react-query';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { returnCaseApi } from '../services/api';
-
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-} from 'recharts';
 
 // Define your ReturnCase interface based on your data
 interface ReturnCase {
-    _id: string;
-    id: string; // for DataGrid row id
+    case_id?: string;
     customer_id: string;
     return_reason: string;
     risk_score: number;
     suspicion_score: number;
     product_category: string;
     action_taken: string;
-    timestamp: string;
+    reported_at: string;
 }
 
 interface ReturnCasesResponse {
     cases: ReturnCase[];
-    // any other fields you get from API like total count, etc.
+    total: number;
 }
 
 interface Statistics {
     total_cases: number;
     avg_risk_score: number;
-
     avg_suspicion_score: number;
     low_risk_cases: number;
     medium_risk_cases: number;
@@ -60,62 +48,92 @@ interface StatisticsResponse {
     statistics: Statistics;
 }
 
-const Dashboard: React.FC = () => {
-    const [filters, setFilters] = useState({
-        page: 1,
-        per_page: 10,
-        min_score: 0,
-        max_score: 100,
-        product_category: '',
-        action_taken: '',
-    });
+const riskScoreMarks = [
+    { value: 0, label: '0%' },
+    { value: 100, label: '100%' },
+];
 
+const Dashboard: React.FC = () => {
     const { data: casesData, isLoading: casesLoading, error: casesError } = useQuery<ReturnCasesResponse>(
-        ['returnCases', filters],
-        () =>
-            returnCaseApi.getReturnCases(filters).then(data => ({
-                ...data,
-                cases: data.cases.map((item: ReturnCase) => ({ ...item, id: item._id })),
-            }))
+        'returnCases',
+        () => returnCaseApi.getReturnCases({})
     );
 
     const { data: statsData, isLoading: statsLoading, error: statsError } = useQuery<StatisticsResponse>(
         'statistics',
         () => returnCaseApi.getStatistics()
     );
-    
 
+    // Filters
+    const [riskRange, setRiskRange] = useState<number[]>([0, 100]);
+    const [productCategory, setProductCategory] = useState('');
+    const [actionTaken, setActionTaken] = useState('');
 
-    const handleFilterChange = (field: keyof typeof filters, value: any) => {
-        setFilters((prev) => ({ ...prev, [field]: value }));
-    };
+    // Unique product categories and actions for dropdowns
+    const productCategories = useMemo(() => {
+        const set = new Set<string>();
+        casesData?.cases.forEach((c) => set.add(c.product_category));
+        return Array.from(set);
+    }, [casesData]);
+    const actionTakenOptions = useMemo(() => {
+        const set = new Set<string>();
+        casesData?.cases.forEach((c) => set.add(c.action_taken));
+        return Array.from(set);
+    }, [casesData]);
+
+    // Filtering logic
+    const filteredCases = useMemo(() => {
+        if (!casesData?.cases) return [];
+        return casesData.cases.filter((c) => {
+            const risk = c.risk_score * 100;
+            const inRisk = risk >= riskRange[0] && risk <= riskRange[1];
+            const inCategory = productCategory ? c.product_category === productCategory : true;
+            const inAction = actionTaken ? c.action_taken === actionTaken : true;
+            return inRisk && inCategory && inAction;
+        });
+    }, [casesData, riskRange, productCategory, actionTaken]);
+
+    // Risk distribution chart data
+    const riskDist = useMemo(() => {
+        let low = 0, med = 0, high = 0;
+        casesData?.cases.forEach((c) => {
+            if (c.risk_score < 0.3) low++;
+            else if (c.risk_score < 0.7) med++;
+            else high++;
+        });
+        return [
+            { name: 'Low Risk', value: low },
+            { name: 'Medium Risk', value: med },
+            { name: 'High Risk', value: high },
+        ];
+    }, [casesData]);
 
     const columns: GridColDef<ReturnCase>[] = [
         { field: 'customer_id', headerName: 'Customer ID', width: 130 },
-        { field: 'return_reason', headerName: 'Return Reason', width: 200 },
+        { field: 'return_reason', headerName: 'Return Reason', width: 160 },
         {
             field: 'risk_score',
             headerName: 'Risk Score',
-            width: 130,
+            width: 120,
             renderCell: (params) => (
                 <Box
                     sx={{
                         color:
-                            params.value >= 70
+                            params.value >= 0.7
                                 ? 'error.main'
-                                : params.value >= 30
+                                : params.value >= 0.3
                                 ? 'warning.main'
                                 : 'success.main',
                     }}
                 >
-                    {params.value.toFixed(1)}%
+                    {(params.value * 100).toFixed(1)}%
                 </Box>
             ),
         },
         {
             field: 'suspicion_score',
             headerName: 'Suspicion Score',
-            width: 130,
+            width: 140,
             renderCell: (params) => (
                 <Box
                     sx={{
@@ -134,20 +152,12 @@ const Dashboard: React.FC = () => {
         { field: 'product_category', headerName: 'Product Category', width: 150 },
         { field: 'action_taken', headerName: 'Action', width: 130 },
         {
-            field: 'timestamp',
+            field: 'reported_at',
             headerName: 'Date',
             width: 180,
             valueFormatter: (params) => new Date(params.value as string).toLocaleString(),
         },
     ];
-
-    const riskDistributionData = statsData?.statistics
-        ? [
-              { name: 'Low Risk', value: statsData.statistics.low_risk_cases },
-              { name: 'Medium Risk', value: statsData.statistics.medium_risk_cases },
-              { name: 'High Risk', value: statsData.statistics.high_risk_cases },
-          ]
-        : [];
 
     if (casesLoading || statsLoading) {
         return <Typography variant="h6">Loading...</Typography>;
@@ -180,7 +190,7 @@ const Dashboard: React.FC = () => {
                         <CardContent>
                             <Typography color="textSecondary">Average Risk Score</Typography>
                             <Typography variant="h4">
-                                {(statsData?.statistics.avg_risk_score || 0).toFixed(1)}%
+                                {((statsData?.statistics.avg_risk_score || 0) * 100).toFixed(1)}%
                             </Typography>
                         </CardContent>
                     </Card>
@@ -200,96 +210,83 @@ const Dashboard: React.FC = () => {
                         <CardContent>
                             <Typography color="textSecondary">Average Suspicion Score</Typography>
                             <Typography variant="h4">
-                                {(statsData?.statistics.avg_suspicion_score || 0).toFixed(2)}
+                                {((statsData?.statistics.avg_suspicion_score || 0) * 100).toFixed(2)}
                             </Typography>
                         </CardContent>
                     </Card>
                 </Grid>
 
+                {/* Risk Distribution Chart */}
                 <Grid item xs={12} md={6}>
                     <Paper sx={{ p: 2, height: 300 }}>
                         <Typography variant="h6">Risk Distribution</Typography>
-                        <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={riskDistributionData}>
-                                <CartesianGrid strokeDasharray="3 3" />
+                        <ResponsiveContainer width="100%" height="80%">
+                            <BarChart data={riskDist} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
                                 <XAxis dataKey="name" />
-                                <YAxis />
+                                <YAxis allowDecimals={false} />
                                 <Tooltip />
-                                <Legend />
-                                <Bar dataKey="value" fill="#8884d8" />
+                                <Bar dataKey="value" fill="#9575cd" barSize={40} />
                             </BarChart>
                         </ResponsiveContainer>
                     </Paper>
                 </Grid>
-
+                {/* Filters */}
                 <Grid item xs={12} md={6}>
-                    <Paper sx={{ p: 2 }}>
+                    <Paper sx={{ p: 2, height: 300 }}>
                         <Typography variant="h6">Filters</Typography>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <Typography>Risk Score Range</Typography>
-                                <Slider
-                                    value={[filters.min_score, filters.max_score]}
-                                    onChange={(_, value) => {
-                                        const [min, max] = value as number[];
-                                        handleFilterChange('min_score', min);
-                                        handleFilterChange('max_score', max);
-                                    }}
-                                    valueLabelDisplay="auto"
-                                    min={0}
-                                    max={100}
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <FormControl fullWidth>
-                                    <InputLabel>Product Category</InputLabel>
-                                    <Select
-                                        value={filters.product_category}
-                                        onChange={(e) => handleFilterChange('product_category', e.target.value)}
-                                        label="Product Category"
-                                    >
-                                        <MenuItem value="">All</MenuItem>
-                                        <MenuItem value="Electronics">Electronics</MenuItem>
-                                        <MenuItem value="Clothing">Clothing</MenuItem>
-                                        <MenuItem value="Books">Books</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <FormControl fullWidth>
-                                    <InputLabel>Action Taken</InputLabel>
-                                    <Select
-                                        value={filters.action_taken}
-                                        onChange={(e) => handleFilterChange('action_taken', e.target.value)}
-                                        label="Action Taken"
-                                    >
-                                        <MenuItem value="">All</MenuItem>
-                                        <MenuItem value="Approve">Approve</MenuItem>
-                                        <MenuItem value="Flag">Flag</MenuItem>
-                                        <MenuItem value="Escalate">Escalate</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                        </Grid>
+                        <Box sx={{ mt: 2 }}>
+                            <Typography gutterBottom>Risk Score Range</Typography>
+                            <Slider
+                                value={riskRange}
+                                onChange={(_, v) => setRiskRange(v as number[])}
+                                valueLabelDisplay="auto"
+                                min={0}
+                                max={100}
+                                marks={riskScoreMarks}
+                            />
+                        </Box>
+                        <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
+                            <FormControl sx={{ minWidth: 160 }}>
+                                <InputLabel>Product Category</InputLabel>
+                                <Select
+                                    value={productCategory}
+                                    label="Product Category"
+                                    onChange={(e) => setProductCategory(e.target.value)}
+                                >
+                                    <MenuItem value="">All</MenuItem>
+                                    {productCategories.map((cat) => (
+                                        <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{ minWidth: 160 }}>
+                                <InputLabel>Action Taken</InputLabel>
+                                <Select
+                                    value={actionTaken}
+                                    label="Action Taken"
+                                    onChange={(e) => setActionTaken(e.target.value)}
+                                >
+                                    <MenuItem value="">All</MenuItem>
+                                    {actionTakenOptions.map((act) => (
+                                        <MenuItem key={act} value={act}>{act}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Box>
                     </Paper>
                 </Grid>
 
+                {/* Data Table */}
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2 }}>
                         <DataGrid
-                            rows={casesData?.cases || []}
+                            rows={filteredCases}
                             columns={columns}
-                            paginationMode="server"
-                            paginationModel={{ page: filters.page - 1, pageSize: filters.per_page }}
-                            onPaginationModelChange={(model: GridPaginationModel) => {
-                                handleFilterChange('page', model.page + 1);
-                                handleFilterChange('per_page', model.pageSize);
-                            }}
-                            pageSizeOptions={[5, 10, 25]}
-                            checkboxSelection
+                            autoHeight
+                            disableColumnMenu
                             disableRowSelectionOnClick
                             loading={casesLoading}
-                            getRowId={(row) => `${row.customer_id}-${row.timestamp}`}
+                            getRowId={(row) => row.case_id || row.customer_id + row.reported_at}
                         />
                     </Paper>
                 </Grid>

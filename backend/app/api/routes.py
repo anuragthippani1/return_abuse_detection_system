@@ -42,18 +42,14 @@ def save_return_case():
 @api.route('/get-return-cases', methods=['GET'])
 def get_return_cases():
     try:
-        filters = {
-            'min_score': request.args.get('min_score', type=float),
-            'max_score': request.args.get('max_score', type=float),
-            'product_category': request.args.get('product_category'),
-            'action_taken': request.args.get('action_taken')
-        }
-        page = request.args.get('page', 1, type=int)
-        per_page = request.args.get('per_page', 10, type=int)
-        skip = max(0, (page - 1) * per_page)
-
-        cases = return_case_service.get_return_cases(**filters, limit=per_page, skip=skip)
-        return jsonify({'success': True, 'cases': cases, 'page': page, 'per_page': per_page}), 200
+        # Support dynamic limit from query parameter, default to 100
+        limit = int(request.args.get('limit', 100))
+        cases = return_case_service.get_return_cases(limit=limit)
+        return jsonify({
+            'success': True,
+            'cases': cases,
+            'total': len(cases)
+        }), 200
     except Exception as e:
         return jsonify({'success': False, 'message': f'Error fetching return cases: {str(e)}'}), 400
 
