@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Amazon Return Abuse Detection System
 
 An AI-powered system for detecting fraudulent return behavior in e-commerce operations.
@@ -124,14 +124,4 @@ npm start
 4. Push to the branch
 5. Create a Pull Request
 
-## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Amazon for the use case inspiration
-- Open source community for the amazing tools and libraries
-=======
-# return_abuse_detection_system
->>>>>>> bc01a1d4e30c6f764913d11e67cd648fe3dc1b59
