@@ -20,10 +20,31 @@ def create_app(config_class=Config):
     # Basic routes
     @app.route('/')
     def home():
-        return {'message': 'Return Abuse Detection System API is running'}
+        return {'message': 'Return Abuse Detection System API is running', 'status': 'ok'}
+
+    @app.route('/api')
+    def api_root():
+        return {
+            'message': 'Amazon Return Abuse Detection System API',
+            'version': '1.0',
+            'endpoints': {
+                'health': '/health',
+                'get_cases': '/api/get-return-cases',
+                'save_case': '/api/save-return-case',
+                'statistics': '/api/return-case-statistics',
+                'get_case_by_id': '/api/get-return-case/<case_id>',
+                'update_case': '/api/update-return-case/<case_id>',
+                'delete_case': '/api/delete-return-case/<case_id>',
+                'upload_data': '/api/upload-data'
+            }
+        }
 
     @app.route('/test')
     def test():
         return "Test route works!"
+    
+    @app.route('/health')
+    def health():
+        return {'status': 'ok', 'message': 'Backend is running'}
 
     return app

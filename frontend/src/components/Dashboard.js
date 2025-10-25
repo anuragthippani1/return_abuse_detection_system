@@ -111,7 +111,8 @@ const Dashboard = () => {
   // Filtering logic
   const filteredCases = useMemo(() => {
     return cases.filter((c) => {
-      const risk = c.risk_score * 100;
+      // Handle both 0-1 scale and 0-100 scale
+      const risk = c.risk_score > 1 ? c.risk_score : c.risk_score * 100;
       const inRisk = risk >= riskRange[0] && risk <= riskRange[1];
       const inCategory = productCategory
         ? c.product_category === productCategory
@@ -127,8 +128,10 @@ const Dashboard = () => {
       med = 0,
       high = 0;
     cases.forEach((c) => {
-      if (c.risk_score < 0.3) low++;
-      else if (c.risk_score < 0.7) med++;
+      // Handle both 0-1 scale and 0-100 scale
+      const risk = c.risk_score > 1 ? c.risk_score : c.risk_score * 100;
+      if (risk < 30) low++;
+      else if (risk < 70) med++;
       else high++;
     });
     return [
@@ -145,39 +148,45 @@ const Dashboard = () => {
       field: "risk_score",
       headerName: "Risk Score",
       width: 120,
-      renderCell: (params) => (
-        <Box
-          sx={{
-            color:
-              params.value >= 0.7
-                ? "error.main"
-                : params.value >= 0.3
-                ? "warning.main"
-                : "success.main",
-          }}
-        >
-          {(params.value * 100).toFixed(1)}%
-        </Box>
-      ),
+      renderCell: (params) => {
+        const risk = params.value > 1 ? params.value : params.value * 100;
+        return (
+          <Box
+            sx={{
+              color:
+                risk >= 70
+                  ? "error.main"
+                  : risk >= 30
+                  ? "warning.main"
+                  : "success.main",
+            }}
+          >
+            {risk.toFixed(1)}%
+          </Box>
+        );
+      },
     },
     {
       field: "suspicion_score",
       headerName: "Suspicion Score",
       width: 140,
-      renderCell: (params) => (
-        <Box
-          sx={{
-            color:
-              params.value >= 0.7
-                ? "error.main"
-                : params.value >= 0.3
-                ? "warning.main"
-                : "success.main",
-          }}
-        >
-          {(params.value * 100).toFixed(1)}%
-        </Box>
-      ),
+      renderCell: (params) => {
+        const suspicion = params.value > 1 ? params.value : params.value * 100;
+        return (
+          <Box
+            sx={{
+              color:
+                suspicion >= 70
+                  ? "error.main"
+                  : suspicion >= 30
+                  ? "warning.main"
+                  : "success.main",
+            }}
+          >
+            {suspicion.toFixed(1)}%
+          </Box>
+        );
+      },
     },
     { field: "product_category", headerName: "Product Category", width: 150 },
     { field: "action_taken", headerName: "Action", width: 130 },
@@ -191,8 +200,8 @@ const Dashboard = () => {
 
   return (
     <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Amazon Return Abuse Detection System
+      <Typography variant="h4" gutterBottom sx={{ mb: 3 }}>
+        Case Analytics Dashboard
       </Typography>
       <Grid container spacing={3}>
         {/* Summary Cards */}
@@ -209,7 +218,11 @@ const Dashboard = () => {
             <CardContent>
               <Typography color="textSecondary">Average Risk Score</Typography>
               <Typography variant="h4">
-                {((stats.avg_risk_score || 0) * 100).toFixed(1)}%
+                {(stats.avg_risk_score > 1
+                  ? stats.avg_risk_score
+                  : (stats.avg_risk_score || 0) * 100
+                ).toFixed(1)}
+                %
               </Typography>
             </CardContent>
           </Card>
@@ -231,7 +244,11 @@ const Dashboard = () => {
                 Average Suspicion Score
               </Typography>
               <Typography variant="h4">
-                {((stats.avg_suspicion_score || 0) * 100).toFixed(2)}
+                {(stats.avg_suspicion_score > 1
+                  ? stats.avg_suspicion_score
+                  : (stats.avg_suspicion_score || 0) * 100
+                ).toFixed(1)}
+                %
               </Typography>
             </CardContent>
           </Card>

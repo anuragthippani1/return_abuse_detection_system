@@ -6,19 +6,19 @@ from bson.objectid import ObjectId
 class ReturnCase:
     def __init__(
         self,
-        case_id: str,
-        user_id: str,
         customer_id: str,
-        abuse_type: str,
-        description: str,
-        status: str,
-        reported_at: datetime,
-        refund_method_type: str,
-        action_taken: str,
         return_reason: str,
         risk_score: float,
         suspicion_score: float,
-        product_category: str
+        refund_method_type: str,
+        action_taken: str,
+        product_category: Optional[str] = None,
+        case_id: Optional[str] = None,
+        user_id: Optional[str] = None,
+        abuse_type: Optional[str] = None,
+        description: Optional[str] = None,
+        status: Optional[str] = None,
+        reported_at: Optional[datetime] = None
     ):
         self.case_id = case_id
         self.user_id = user_id
@@ -26,7 +26,7 @@ class ReturnCase:
         self.abuse_type = abuse_type
         self.description = description
         self.status = status
-        self.reported_at = reported_at
+        self.reported_at = reported_at or datetime.utcnow()
         self.refund_method_type = refund_method_type
         self.action_taken = action_taken
         self.return_reason = return_reason
@@ -58,19 +58,19 @@ class ReturnCase:
     def from_dict(cls, data: Dict[str, Any]) -> 'ReturnCase':
         """Create a ReturnCase instance from a dictionary."""
         return cls(
-            case_id=data['case_id'],
-            user_id=data['user_id'],
-            customer_id=data['customer_id'],
-            abuse_type=data['abuse_type'],
-            description=data['description'],
-            status=data['status'],
-            reported_at=data['reported_at'],
-            refund_method_type=data['refund_method_type'],
-            action_taken=data['action_taken'],
-            return_reason=data['return_reason'],
-            risk_score=data['risk_score'],
-            suspicion_score=data['suspicion_score'],
-            product_category=data['product_category']
+            customer_id=data.get('customer_id', ''),
+            return_reason=data.get('return_reason', ''),
+            risk_score=data.get('risk_score', 0),
+            suspicion_score=data.get('suspicion_score', 0),
+            refund_method_type=data.get('refund_method_type', ''),
+            action_taken=data.get('action_taken', ''),
+            product_category=data.get('product_category'),
+            case_id=data.get('case_id'),
+            user_id=data.get('user_id'),
+            abuse_type=data.get('abuse_type'),
+            description=data.get('description'),
+            status=data.get('status'),
+            reported_at=data.get('reported_at')
         )
 
 class ReturnCaseModel:

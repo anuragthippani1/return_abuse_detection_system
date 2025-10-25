@@ -1,0 +1,87 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+myenv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+backend/venv/
+backend/myenv/
+backend/env/
+
+# Flask
+instance/
+.webassets-cache
+backend/*.log
+backend/backend.log
+
+# Node
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+frontend/build/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/*.log
+frontend/frontend.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+backend/.env
+frontend/.env
+
+# Uploads and data
+backend/uploads/*.csv
+backend/uploads/*.json
+!backend/uploads/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# MongoDB
+data/db/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Package files
+package-lock.json
+yarn.lock
+

@@ -15,23 +15,28 @@ COLLECTION_NAME = os.getenv('MONGODB_COLLECTION', 'return_cases')
 def get_mongodb_client():
     """Create and return a MongoDB client instance."""
     try:
-        client = MongoClient(MONGODB_URI)
+        client = MongoClient(MONGODB_URI, serverSelectionTimeoutMS=5000)
         # Test the connection
         client.admin.command('ping')
         print("Successfully connected to MongoDB!")
         return client
     except Exception as e:
-        print(f"Error connecting to MongoDB: {e}")
-        raise
+        print(f"Warning: Could not connect to MongoDB: {e}")
+        print("MongoDB features will be disabled. Using in-memory storage.")
+        return None
 
 def get_database():
     """Get database instance."""
     client = get_mongodb_client()
+    if client is None:
+        return None
     return client[DB_NAME]
 
 def get_collection():
     """Get collection instance."""
     db = get_database()
+    if db is None:
+        return None
     return db[COLLECTION_NAME]
 
 def convert_object_id(data: Dict[str, Any]) -> Dict[str, Any]:
