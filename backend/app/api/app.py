@@ -45,7 +45,7 @@ def create_app():
                             ]
                         }
                     },
-                    "low_risk_cases": {
+                    "low_risk_cases": {m
                         "$sum": {
                             "$cond": [{"$lt": ["$risk_score", 50]}, 1, 0]
                         }
