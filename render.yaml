@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: return-abuse-api
+    runtime: python
+    region: oregon
+    plan: free
+    branch: main
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run.py
+    envVars:
+      - key: PORT
+        value: 5001
+      - key: MONGODB_URI
+        value: mongodb://localhost:27017
+      - key: MONGODB_DB_NAME
+        value: returns_db
+      - key: MONGODB_COLLECTION
+        value: return_cases
+
