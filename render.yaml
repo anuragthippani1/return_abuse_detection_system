@@ -6,8 +6,9 @@ services:
     plan: free
     branch: main
     rootDir: backend
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: python run.py
+    pythonVersion: "3.11.9"
     envVars:
       - key: PORT
         value: 5001
@@ -17,4 +18,3 @@ services:
         value: returns_db
       - key: MONGODB_COLLECTION
         value: return_cases
-
